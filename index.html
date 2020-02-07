@@ -1,46 +1,42 @@
 <!DOCTYPE html>
-  <html>
+<html>
     <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="style.css">
-
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  
-      
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw" async defer></script>
-
-
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw" async defer></script>
       <script src="script.js"></script>
-
-
-      </head>
-      <body>
+    </head>
+    <body>
       
       
       <div class="container">
+        <div class = "row">
+          <div class = "col-sm-6">
+            <div class="image-container">
+              <img src="icons8-saxophone-50 (1).png" alt="Avatar" class="image" id="whitesax">
+              <img src="icons8-saxophone-50.png" alt="Avatar" class="image" id="blacksax">
+            </div> 
+          </div>
+          <div class = "col-sm-6">
+            <h1>ive Events</h1>
+          </div>
+        </div>
 
-      <div class="image-container">
-
-        <img src="icons8-saxophone-50 (1).png" alt="Avatar" class="image" id="whitesax">
-        <img src="icons8-saxophone-50.png" alt="Avatar" class="image" id="blacksax">
 
       </div>
-
-    </div>
          
   
       
       <div class = "container">
-        <h1> Live Events </h1>
-        <form>
-          <input></input>
-        </form>
+          <div class = "row">
+            <div id = "map" class = "col-sm-6">
+
+            </div>
+            <div id = "eventList" class = "col-sm-6">
+              
+            </div>
+          </div>
       </div>
-
-      <p id="location">location there</p>
-      <div id="map"></div>
-      <div id="events"></div>
-    
-
-
   </body>
-  </html>
+</html>
