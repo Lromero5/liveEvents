@@ -2,35 +2,18 @@
   <html>
     <head>
       <link rel="stylesheet" type="text/css" href="style.css">
-
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  
-      
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw" async defer></script>
-
-
-      <script src="script.js"></script>
-
-
-      </head>
-      <body>
-      
-      
-      <div class="container">
-
-      <div class="image-container">
-
-        <img src="icons8-saxophone-50 (1).png" alt="Avatar" class="image" id="whitesax">
-        <img src="icons8-saxophone-50.png" alt="Avatar" class="image" id="blacksax">
-
-      </div>
-
-    </div>
-         
-  
+    </head>
+   <body>
+      <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+      </style>
       
       <div class = "container">
-        <h1> Live Events </h1>
+        <h1> Hello world </h1>
         <form>
           <input></input>
         </form>
@@ -39,7 +22,104 @@
       <p id="location">location there</p>
       <div id="map"></div>
       <div id="events"></div>
+      
+     
+      <script src="script.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+        
     
+      
+      <script>
+        function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+          var x = document.getElementById("location");
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+  function showPosition(position) {
+      var x = document.getElementById("location");
+      x.innerHTML = "Latitude: " + position.coords.latitude + 
+      "<br>Longitude: " + position.coords.longitude; 
+      var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+
+      $.ajax({
+        type:"GET",
+        url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius=2&apikey=pLOeuGq2JL05uEGrZG7DuGWu6sh2OnMz&latlong="+latlon,
+        async:true,
+        dataType: "json",
+        success: function(json) {
+                    console.log(json);
+                    var e = document.getElementById("events");
+                    e.innerHTML = json.page.totalElements + " events found.";
+                    showEvents(json);
+                    initMap(position, json);
+                },
+        error: function(xhr, status, err) {
+                    console.log(err);
+                }
+      });
+
+  }
+
+  function showError(error) {
+      switch(error.code) {
+          case error.PERMISSION_DENIED:
+              x.innerHTML = "User denied the request for Geolocation."
+              break;
+          case error.POSITION_UNAVAILABLE:
+              x.innerHTML = "Location information is unavailable."
+              break;
+          case error.TIMEOUT:
+              x.innerHTML = "The request to get user location timed out."
+              break;
+          case error.UNKNOWN_ERROR:
+              x.innerHTML = "An unknown error occurred."
+              break;
+      }
+  }
+
+
+  function showEvents(json) {
+    for(var i=0; i<json.page.size; i++) {
+      $("#events").append("<p>"+json._embedded.events[i].name+"</p>");
+    }
+  }
+
+
+  function initMap(position, json) {
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, {
+      center: {lat: position.coords.latitude, lng: position.coords.longitude},
+      zoom: 10
+    });
+    for(var i=0; i<json.page.size; i++) {
+      addMarker(map, json._embedded.events[i]);
+    }
+  }
+
+  function addMarker(map, event) {
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
+      map: map
+    });
+    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    console.log(marker);
+  }
+
+
+
+
+  getLocation();
+        
+        
+  </script>
+        
+        
+ 
+
 
 
   </body>
