@@ -9,20 +9,18 @@ function getLocation() {
     }
     function showPosition(position) {
     var x = document.getElementById("location");
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude; 
     var latlon = position.coords.latitude + "," + position.coords.longitude;
     
     
     $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius=2&apikey=pLOeuGq2JL05uEGrZG7DuGWu6sh2OnMz&latlong="+latlon,
+    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius=2&startDateTime=2020-02-07T00:00:00Z&endDateTime=2020-02-29T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
     async:true,
     dataType: "json",
     success: function(json) {
                 console.log(json);
                 var e = document.getElementById("events");
-                e.innerHTML = json.page.totalElements + " events found.";
+                // e.innerHTML = json.page.totalElements + " events found.";
                 showEvents(json);
                 initMap(position, json);
             },
@@ -53,7 +51,7 @@ function getLocation() {
     
     function showEvents(json) {
     for(var i=0; i<json.page.size; i++) {
-    $("#events").append("<p>"+json._embedded.events[i].name+"</p>");
+    $("#eventList").append("<p>"+json._embedded.events[i].name+" "+json._embedded.events[i].dates.start.localDate+"</p>");
     }
     }
     
@@ -62,7 +60,7 @@ function getLocation() {
     var mapDiv = document.getElementById('map');
     var map = new google.maps.Map(mapDiv, {
     center: {lat: position.coords.latitude, lng: position.coords.longitude},
-    zoom: 10
+    zoom: 13
     });
     for(var i=0; i<json.page.size; i++) {
     addMarker(map, json._embedded.events[i]);
@@ -72,12 +70,11 @@ function getLocation() {
     function addMarker(map, event) {
     var marker = new google.maps.Marker({
     position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
-    map: map
+    map: map,
+    title: event.name
     });
     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     console.log(marker);
     }
-    
-    
     
     getLocation();
