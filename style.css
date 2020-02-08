@@ -1,34 +1,44 @@
+h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 60px;
+  text-align: center;
+}
 
+.image {
+  display: block;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+#whitesax {
+  display: block;
+}
+
+#blacksax {
+  display: none;
+}
+
+.image-container:hover #whitesax {
+  display: none
   
-  .image {
-    display: block;
-    height: auto;
-  }
+}
 
-  #whitesax {
-    display: block;
-  }
+.image-container:hover #blacksax {
+  display: block;
 
-  #blacksax {
-    display: none;
-  }
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
   
-  .image-container:hover #whitesax {
-    display: none
-  }
 
-  .image-container:hover #blacksax {
-    display: block;
+.fa-user:hover {
+  src: "icon8-saxophone-50.png";
+}
 
-  }
-
-  .container:hover {
-    opacity: 1;
-  }
-  
-  #map {
-    width: 500px;
-    height: 400px;
-  }
-
+#map {
+  width: 500px;
+  height: 400px;
+}
