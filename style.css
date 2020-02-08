@@ -1,0 +1,34 @@
+
+
+  
+  .image {
+    display: block;
+    height: auto;
+  }
+
+  #whitesax {
+    display: block;
+  }
+
+  #blacksax {
+    display: none;
+  }
+  
+  .image-container:hover #whitesax {
+    display: none
+  }
+
+  .image-container:hover #blacksax {
+    display: block;
+
+  }
+
+  .container:hover {
+    opacity: 1;
+  }
+  
+  #map {
+    width: 500px;
+    height: 400px;
+  }
+
