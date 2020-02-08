@@ -52,6 +52,17 @@ body {
 }
 
 /* end of NEW CODE */
+html {
+background-color: transparent;
+background-blend-mode: soft-light;
+background-image: url('./media/night-sky.jpg') !important;
+background-position: center;
+background-size: cover;
+}
+body {
+background-color: transparent;
+color: white;
+ }
 
 h1 {
   font-family: "Lobster", cursive;
@@ -66,19 +77,19 @@ h1 {
   margin-right: auto;
 }
 
-#whitesax {
+#linedsax {
   display: block;
 }
 
-#blacksax {
+#sax {
   display: none;
 }
 
-.image-container:hover #whitesax {
-  display: none;
+.image-container:hover #linedsax {
+  display: none
 }
 
-.image-container:hover #blacksax {
+.image-container:hover #sax {
   display: block;
 }
 
@@ -87,7 +98,7 @@ h1 {
 }
 
 .fa-user:hover {
-  src: "icon8-saxophone-50.png";
+  src: "saxophone.png";
 }
 
 /* the media query kicks in when the screen is large */
