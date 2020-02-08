@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw" async defer></script>
-      <script src="script.js"></script>
-    </head>
-<body>
-      
-      
-      
-      <div class="container">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw"
+      async
+      defer
+    ></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <!-- this div is the wrapper for the whole document  -->
+    <div class="wrapper">
+      <!-- header has the title and the button  -->
+      <header>
         <article class="header">
-            <div class="image-container">
-              <img src="media/jazz.png" alt="Avatar" class="image center" id="linedsax">
-              <img src="media/saxophone.png" alt="Avatar" class="image center" id="sax">
-            </div> 
-            <h1 class="title">Live Events</h1>
-          </article>
-      </div>
-         
+          <div class="image-container">
+            <img
+              src="media/jazz.png"
+              alt="Avatar"
+              class="image center"
+              id="linedsax"
+            />
+            <img
+              src="media/saxophone.png"
+              alt="Avatar"
+              class="image center"
+              id="sax"
+            />
+          </div>
 
+          <h1 class="title">Live Events</h1>
+        </article>
+        <!-- button -->
+        <article class="buttoncontainer">
+          <p>Button Here</p>
+        </article>
+      </header>
 
-<!-- this div is the wrapper for the whole document  -->
- <div class="wrapper">
+      <!-- this section contains the map and the results -->
+      <section class="content-container">
+        <aside id="map" class="map-container"></aside>
 
-<!-- header has the title and the button  -->
+        <aside id="eventList" class="results-container"></aside>
+      </section>
 
-<!-- button -->
-    <article class="buttoncontainer">
-    <p> Button Here </p>  
-    </article>
-  </header>
-
-  <!-- this section contains the map and the results -->
-    <section class="content-container">
-      <aside id= "map" class = "map-container">
-      </aside>
-        
-      <aside id = "eventList" class="results-container">
-      </aside>
-    </section>
-
-    <footer class="footer">Carolina, Leighton, Leticia</footer>
-
-  </div>
-
-
-</div>
+      <footer class="footer">Carolina, Leighton, Leticia</footer>
+    </div>
   </body>
 </html>
-
