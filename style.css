@@ -1,5 +1,60 @@
+/* This code is incorporating flex box */
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* sets the padding of anything inside of the wrapper */
+.wrapper > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+
+/* setting the header color */
+/* .header {
+  background: lightgrey;
+} */
+
+/* setting the footer color */
+/* .footer {
+  background: lightgrey;
+} */
+
+/* button */
+.buttoncontainer {
+  text-align: center;
+  ;
+}
+
+/* the class for the map container */
+.map-container {
+  height: 100%;
+  width: 100%;
+  min-height: 500px;
+  background: grey;
+}
+
+/* the results container */
+.results-container {
+  background: lightgrey;
+}
+
+/* this is setting the map and the results stacked  */
+.content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  padding: 2em;
+}
+
+/* end of NEW CODE */
+
 h1 {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 60px;
   text-align: center;
 }
@@ -20,25 +75,47 @@ h1 {
 }
 
 .image-container:hover #whitesax {
-  display: none
-  
+  display: none;
 }
 
 .image-container:hover #blacksax {
   display: block;
-
 }
 
 .container:hover .overlay {
   opacity: 1;
 }
-  
 
 .fa-user:hover {
   src: "icon8-saxophone-50.png";
 }
 
-#map {
-  width: 500px;
-  height: 400px;
+/* the media query kicks in when the screen is large */
+@media screen and (min-width: 800px) {
+  .buttoncontainer {
+    flex: 3 0px;
+  }
+  .map-container {
+    order: 1;
+    width: 100%;
+  }
+  .buttoncontainer {
+    order: 2;
+  }
+  .results-container {
+    order: 3;
+  }
+
+  .footer {
+    order: 4;
+  }
+
+  .content-container {
+    flex-direction: row;
+  }
+  
+  #map {
+    width: 100%;
+  }
 }
+/* media query ends */
