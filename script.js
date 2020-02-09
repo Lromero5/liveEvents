@@ -1,3 +1,10 @@
+let y = moment().format('YYYY');
+let m = moment().format('MM');
+let miles = 2;
+
+function getselectedvalue() {
+  miles = $("#distanceSelector").val();
+}
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -14,18 +21,16 @@ function getLocation() {
     
     $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius=2&startDateTime=2020-02-07T00:00:00Z&endDateTime=2020-02-29T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
+    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius="+miles+"&startDateTime="+y+"-"+m+"-07T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
     async:true,
     dataType: "json",
     success: function(json) {
-                console.log(json);
                 var e = document.getElementById("events");
                 // e.innerHTML = json.page.totalElements + " events found.";
                 showEvents(json);
                 initMap(position, json);
             },
     error: function(xhr, status, err) {
-                console.log(err);
             }
     });
     
@@ -60,7 +65,87 @@ function getLocation() {
     var mapDiv = document.getElementById('map');
     var map = new google.maps.Map(mapDiv, {
     center: {lat: position.coords.latitude, lng: position.coords.longitude},
-    zoom: 13
+    zoom: 13,
+    styles: [
+      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+      {
+        featureType: 'administrative.locality',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+      },
+      {
+        featureType: 'poi',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+      },
+      {
+        featureType: 'poi.park',
+        elementType: 'geometry',
+        stylers: [{color: '#263c3f'}]
+      },
+      {
+        featureType: 'poi.park',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#6b9a76'}]
+      },
+      {
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [{color: '#38414e'}]
+      },
+      {
+        featureType: 'road',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#212a37'}]
+      },
+      {
+        featureType: 'road',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#9ca5b3'}]
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'geometry',
+        stylers: [{color: '#746855'}]
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#1f2835'}]
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#f3d19c'}]
+      },
+      {
+        featureType: 'transit',
+        elementType: 'geometry',
+        stylers: [{color: '#2f3948'}]
+      },
+      {
+        featureType: 'transit.station',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'geometry',
+        stylers: [{color: '#17j263c'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#515c6d'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'labels.text.stroke',
+        stylers: [{color: '#17263c'}]
+      }
+    ]
     });
     for(var i=0; i<json.page.size; i++) {
     addMarker(map, json._embedded.events[i]);
@@ -74,7 +159,7 @@ function getLocation() {
     title: event.name
     });
     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-    console.log(marker);
     }
     
     getLocation();
+    $("#distanceBtn").on("click", getLocation);
