@@ -13,13 +13,6 @@
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw"
-      async
-      defer
-    ></script>
-    <script src="script.js"></script>
   </head>
   <body>
     <!-- this div is the wrapper for the whole document  -->
@@ -46,9 +39,21 @@
         </article>
         <!-- button -->
         <article class="buttoncontainer">
-          <p>Button Here</p>
+          <div class = "container">
+            <h3>Search Radius</h3>
+            <form>
+              <select id = "distanceSelector" name="miles" onchange="getselectedvalue();">
+                <option value="2">2 miles</option>
+                <option value="4">4 miles</option>
+                <option value="6">6 miles</option>
+                <option value="8">8 miles</option>
+              </select>
+            </form>
+            <button id = "distanceBtn" class = "btn btn-dark" type = "button">submit</button>
+          </div>
         </article>
       </header>
+
 
       <!-- this section contains the map and the results -->
       <section class="content-container">
@@ -60,4 +65,12 @@
       <footer class="footer">Carolina, Leighton, Leticia</footer>
     </div>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrxmVL79IyHgON1kzW2-NhscG3KvOQpHw"
+    async
+    defer
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js" type="text/javascript"></script>
+  <script src="script.js"></script>
 </html>
