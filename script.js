@@ -1,5 +1,6 @@
 let y = moment().format('YYYY');
 let m = moment().format('MM');
+let d = moment().format('DD');
 let miles = 2;
 
 function getselectedvalue() {
@@ -21,7 +22,7 @@ function getLocation() {
     
     $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius="+miles+"&startDateTime="+y+"-"+m+"-07T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
+    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius="+miles+"&startDateTime="+y+"-"+m+"-"+d+"T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
     async:true,
     dataType: "json",
     success: function(json) {
