@@ -158,6 +158,7 @@ h1 {
   
   #map {
     width: 100%;
+    height: 25%;
   }
 }
 /* media query ends */
