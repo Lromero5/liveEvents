@@ -1,7 +1,11 @@
 let y = moment().format('YYYY');
 let m = moment().format('MM');
+let d = moment().format('DD');
 let miles = 2;
-
+let lttude = "";
+let lngtude = "";
+let LatLng = "";
+let trueFalse = "T"
 function getselectedvalue() {
   miles = $("#distanceSelector").val();
 }
@@ -16,12 +20,16 @@ function getLocation() {
     }
     function showPosition(position) {
     var x = document.getElementById("location");
-    var latlon = position.coords.latitude + "," + position.coords.longitude;
-    
+    if(trueFalse === "T") {
+    latlon = position.coords.latitude + "," + position.coords.longitude;
+    lttude = position.coords.latitude;
+    lngtude = position.coords.longitude;
+    trueFalse = "F";
+    }
     
     $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius="+miles+"&startDateTime="+y+"-"+m+"-07T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
+    url:"https://app.ticketmaster.com/discovery/v2/events.json?&radius="+miles+"&startDateTime="+y+"-"+m+"-"+d+"T00:00:00Z&sort=date,asc&apikey=tHSjnlUwSqOUd8dJ9Zg9dkfUxn0ALVqq&latlong="+latlon,
     async:true,
     dataType: "json",
     success: function(json) {
@@ -64,7 +72,7 @@ function getLocation() {
     function initMap(position, json) {
     var mapDiv = document.getElementById('map');
     var map = new google.maps.Map(mapDiv, {
-    center: {lat: position.coords.latitude, lng: position.coords.longitude},
+    center: {lat: lttude, lng: lngtude},
     zoom: 13,
     styles: [
       {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -162,4 +170,4 @@ function getLocation() {
     }
     
     getLocation();
-    $("#distanceBtn").on("click", getLocation);
+    $("#distanceBtn").on("click", showPosition);
