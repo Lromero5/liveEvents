@@ -63,7 +63,9 @@ function getLocation() {
     
     
     function showEvents(json) {
+      $("#eventList").empty();
     for(var i=0; i<json.page.size; i++) {
+   
     $("#eventList").append("<p class='event-card'>"+json._embedded.events[i].name+" "+json._embedded.events[i].dates.start.localDate+"</p>");
     }
     }
