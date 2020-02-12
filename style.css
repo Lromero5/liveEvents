@@ -107,14 +107,16 @@ h1 {
 .event-card {
   padding: 5px;
   background: #ffffffe6;
-  color: #2e1149;
+
   border-radius: 2px;
   border: 1px solid white;
   box-sizing: border-box;
   margin: 10px;
   font-size: small;
 }
-
+a {
+  color: #2e1149;
+}
 #eventList {
   padding: 0 32px;
 }
