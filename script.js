@@ -35,6 +35,7 @@ function getLocation() {
     success: function(json) {
                 var e = document.getElementById("events");
                 // e.innerHTML = json.page.totalElements + " events found.";
+                console.log(json);
                 showEvents(json);
                 initMap(position, json);
             },
@@ -64,9 +65,10 @@ function getLocation() {
     
     function showEvents(json) {
       $("#eventList").empty();
+      console.log(json._embedded.events[0].url)
     for(var i=0; i<json.page.size; i++) {
    
-    $("#eventList").append("<p class='event-card'>"+json._embedded.events[i].name+" "+json._embedded.events[i].dates.start.localDate+"</p>");
+    $("#eventList").append("<div class='event-card'><a href=" + json._embedded.events[i].url + ">"+json._embedded.events[i].name+" "+json._embedded.events[i].dates.start.localDate+"</a></div>");
     }
     }
     
